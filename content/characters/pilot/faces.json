@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "status": "draft",
+  "description": "Pilot slots for fictional adult face identities. Populate each slot with generated references only after the review gates are available.",
+  "required_reference_slots": ["F1", "F2", "F3", "F4", "F5", "E1", "E2", "E3", "E4", "B1", "B2", "T1", "T2", "T3"],
+  "records": []
+}
