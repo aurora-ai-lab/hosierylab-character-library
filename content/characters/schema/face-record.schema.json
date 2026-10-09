@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hosierylab.com/schemas/face-record.schema.json",
+  "title": "HosieryLab fictional adult face record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["hlf_code", "slug", "status", "is_synthetic", "apparent_age", "gender_presentation", "assets", "review"],
+  "properties": {
+    "hlf_code": {"type": "string", "pattern": "^HLF-[0-9]{4}$"},
+    "slug": {"type": "string", "pattern": "^hlf-[0-9]{4}$"},
+    "status": {"type": "string", "enum": ["draft", "review", "approved", "published", "removed"]},
+    "is_synthetic": {"const": true},
+    "apparent_age": {"type": "integer", "minimum": 25, "maximum": 75},
+    "gender_presentation": {"type": "string", "enum": ["feminine", "masculine", "androgynous"]},
+    "ancestry_appearance": {"type": "string"},
+    "skin_depth": {"type": "integer", "minimum": 1, "maximum": 10},
+    "skin_undertone": {"type": "string", "enum": ["cool", "neutral", "warm", "olive"]},
+    "face_shape": {"type": "string"},
+    "eye_shape": {"type": "string"},
+    "eye_color": {"type": "string"},
+    "hair": {"type": "object", "additionalProperties": false},
+    "makeup_style": {"type": "string"},
+    "identity_notes": {"type": "string", "maxLength": 160},
+    "generation_model": {"type": ["string", "null"]},
+    "assets": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^(F[1-5]|E[1-4]|B[1-2]|T[1-3])$"},
+      "uniqueItems": true
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt_lint", "celebrity_screen", "age_screen", "duplicate_screen", "manual_review"],
+      "properties": {
+        "prompt_lint": {"type": "string", "enum": ["pending", "passed", "failed"]},
+        "celebrity_screen": {"type": "string", "enum": ["pending", "passed", "failed"]},
+        "age_screen": {"type": "string", "enum": ["pending", "passed", "failed"]},
+        "duplicate_screen": {"type": "string", "enum": ["pending", "passed", "failed"]},
+        "manual_review": {"type": "string", "enum": ["pending", "passed", "failed"]}
+      }
+    }
+  }
+}
