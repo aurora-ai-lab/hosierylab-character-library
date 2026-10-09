@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+output/
+generated/
+*.safetensors
+*.ckpt
+*.png
+*.jpg
+*.jpeg
+*.webp
