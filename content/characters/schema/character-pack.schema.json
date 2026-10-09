@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hosierylab.com/schemas/character-pack.schema.json",
+  "title": "HosieryLab character pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["hlc_code", "slug", "face_code", "status", "looks"],
+  "properties": {
+    "hlc_code": {"type": "string", "pattern": "^HLC-[0-9]{4}$"},
+    "slug": {"type": "string", "pattern": "^hlc-[0-9]{4}$"},
+    "face_code": {"type": "string", "pattern": "^HLF-[0-9]{4}$"},
+    "status": {"type": "string", "enum": ["draft", "review", "approved", "published", "removed"]},
+    "styling_overrides": {"type": "object", "additionalProperties": {"type": "string"}},
+    "looks": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["look_index", "hosiery_code", "outfit_code"],
+        "properties": {
+          "look_index": {"type": "integer", "minimum": 1, "maximum": 3},
+          "hosiery_code": {"type": "string", "pattern": "^HL-[A-Z]?[0-9]{6}$"},
+          "outfit_code": {"type": "string"}
+        }
+      }
+    }
+  }
+}
